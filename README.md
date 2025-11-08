@@ -37,7 +37,7 @@ This repository contains the Week 3 assignment implementation: a responsive Reac
 
 ## Demo
 
-- Live deploy URL: (add your deployed URL here)
+- Live deploy URL: (https://aylataskmanager.vercel.app/)
 
 Screenshots (placed images in `/screenshots`):
 ---
