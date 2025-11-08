@@ -28,43 +28,110 @@ You will:
 
 - `Week3-Assignment.md`: Detailed assignment instructions
 - Starter files for your React application:
-  - Basic project structure
-  - Pre-configured Tailwind CSS
-  - Sample component templates
+````markdown
+# PLP Task Manager — Week 3: React, JSX & Tailwind CSS
 
-## Requirements
+This repository contains the Week 3 assignment implementation: a responsive React application built with Vite and styled using Tailwind CSS. The app demonstrates component architecture, state management using hooks, theme management with context, and API integration (JSONPlaceholder).
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Code editor (VS Code recommended)
+---
 
-## Project Structure
+## Demo
+
+- Live deploy URL: (add your deployed URL here)
+
+Screenshots (placed images in `/screenshots`):
+---
+
+## Features implemented
+
+- Project scaffolded with Vite and Tailwind CSS.
+- Reusable UI components: `Button`, `Card`, `Navbar`, `Footer`.
+- Layout with `Navbar` and `Footer` wrapping pages.
+- `TaskManager` component with:
+   - Add new tasks
+   - Mark tasks as completed
+   - Delete tasks
+   - Filter tasks (All, Active, Completed)
+   - Local persistence using a `useLocalStorage` hook
+- Theme switcher (light/dark) powered by React Context and Tailwind dark mode.
+- API integration:
+   - Fetch posts from JSONPlaceholder with loading and error states
+   - Search posts (client-side)
+   - Simple pagination (Prev/Next)
+- Responsive design using Tailwind utilities and a small transition helper.
+
+---
+
+## Tech stack
+
+- React 18
+- Vite (dev server + build)
+- Tailwind CSS
+- React Router (v6)
+- Browser localStorage for simple persistence
+
+---
+
+## Project structure
 
 ```
-src/
-├── components/       # Reusable UI components
-├── pages/           # Page components
-├── hooks/           # Custom React hooks
-├── context/         # React context providers
-├── api/             # API integration functions
-├── utils/           # Utility functions
-└── App.jsx          # Main application component
+Wk-3-Assignment/
+├─ index.html
+├─ package.json
+├─ vite.config.js
+├─ tailwind.config.cjs
+├─ postcss.config.cjs
+├─ src/
+│  ├─ main.jsx                # App bootstrap
+│  ├─ index.css               # Tailwind entry
+│  ├─ App.jsx                 # Root App + routes
+│  ├─ api/
+│  │  └─ jsonPlaceholder.js   # small API wrapper
+│  ├─ components/
+│  │  ├─ Button.jsx
+│  │  ├─ Card.jsx
+│  │  ├─ Navbar.jsx
+│  │  ├─ Footer.jsx
+│  │  └─ TaskManager.jsx
+│  ├─ context/
+│  │  └─ ThemeContext.jsx    # theme (light/dark) provider
+│  ├─ hooks/
+│  │  └─ useLocalStorage.js
+│  └─ pages/
+│     └─ Home.jsx             # Home page: TaskManager + API list
+└─ README.md
 ```
 
-## Submission
+---
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## Installation (local)
 
-1. Complete all required components and features
-2. Implement proper state management with hooks
-3. Integrate with at least one external API
-4. Style your application with Tailwind CSS
-5. Deploy your application and add the URL to your README.md
+Prerequisites: Node.js (v18+ recommended) and npm.
 
-## Resources
+1. Install dependencies
 
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Router Documentation](https://reactrouter.com/) 
+```bash
+npm install
+```
+
+2. Start development server
+
+```bash
+npm run dev
+```
+
+3. Open the displayed URL (usually http://localhost:5173)
+
+4. Build for production
+
+```bash
+npm run build
+```
+
+5. Preview production build locally
+
+```bash
+npm run preview
+```
+
+---
