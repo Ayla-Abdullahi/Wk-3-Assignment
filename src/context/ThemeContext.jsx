@@ -3,12 +3,13 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
+  // Default to dark theme unless user has a saved preference
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem('theme')
-      return saved || 'light'
+      return saved || 'dark'
     } catch (e) {
-      return 'light'
+      return 'dark'
     }
   })
 

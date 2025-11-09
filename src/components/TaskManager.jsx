@@ -43,11 +43,15 @@ const TaskManager = () => {
       {/* Task input form */}
       <form onSubmit={handleSubmit} className="mb-6">
         <div className="flex gap-2">
+          {/* Visually-hidden label for screen readers */}
+          <label htmlFor="new-task" className="sr-only">New task</label>
           <input
+            id="new-task"
             type="text"
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
             placeholder="Add a new task..."
+            aria-label="Add a new task"
             className="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
           />
           <Button type="submit" variant="primary">
@@ -82,7 +86,7 @@ const TaskManager = () => {
       </div>
 
       {/* Task list */}
-      <ul className="space-y-2">
+      <ul role="list" className="space-y-2">
         {filteredTasks.length === 0 ? (
           <li className="text-gray-500 dark:text-gray-400 text-center py-4">
             No tasks found
@@ -91,6 +95,7 @@ const TaskManager = () => {
           filteredTasks.map((task) => (
             <li
               key={task.id}
+              role="listitem"
               className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-gray-700"
             >
               <div className="flex items-center gap-3">
@@ -98,6 +103,8 @@ const TaskManager = () => {
                   type="checkbox"
                   checked={task.completed}
                   onChange={() => toggleTask(task.id)}
+                  aria-label={`Mark task \"${task.text}\" as ${task.completed ? 'incomplete' : 'complete'}`}
+                  aria-checked={task.completed}
                   className="h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
                 />
                 <span
@@ -112,7 +119,7 @@ const TaskManager = () => {
                 variant="danger"
                 size="sm"
                 onClick={() => deleteTask(task.id)}
-                aria-label="Delete task"
+                aria-label={`Delete task \"${task.text}\"`}
               >
                 Delete
               </Button>

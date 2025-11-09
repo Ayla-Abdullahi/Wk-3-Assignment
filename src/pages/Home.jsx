@@ -11,12 +11,13 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [query, setQuery] = useState('')
+  // No translation - JSONPlaceholder posts are already in English
 
   useEffect(() => {
     let cancelled = false
     setLoading(true)
     setError(null)
-    fetchPosts(page, 6)
+      fetchPosts(page, 6)
       .then((data) => {
         if (!cancelled) setPosts(data)
       })
@@ -52,7 +53,27 @@ const Home = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
               <Button onClick={() => setQuery('')} variant="secondary">Clear</Button>
+              {/* Reload posts from JSONPlaceholder (English) without translation */}
+              <Button
+                onClick={async () => {
+                  setLoading(true)
+                  setError(null)
+                  try {
+                    const data = await fetchPosts(page, 6)
+                    setPosts(data)
+                  } catch (e) {
+                    setError(e.message || 'Error')
+                  } finally {
+                    setLoading(false)
+                  }
+                }}
+                variant="secondary"
+                disabled={loading}
+              >
+                {loading ? 'Reloading…' : 'Reload posts (English)'}
+              </Button>
             </div>
+
 
             {loading ? (
               <p className="text-gray-500">Loading...</p>
